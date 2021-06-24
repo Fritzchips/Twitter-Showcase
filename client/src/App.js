@@ -26,7 +26,7 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to={"/Home"}>
+              <Link className="nav-link" to={"/"}>
                 Home
               </Link>
             </li>
@@ -47,7 +47,7 @@ function App() {
         <h1>Twitter Showcase</h1>
       </header>
       <Switch>
-        <Route exact path={["/", "/Home"]} component={HomePage} />
+        <Route exact path={"/"} component={HomePage} />
         <Route exact path={"/UserSearch"} component={UserSearch} />
         <Route exact path={"/RandomTweet"} component={RandomTweet} />
       </Switch>
