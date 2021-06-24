@@ -14,6 +14,9 @@ const authAxios = axios.create({
 });
 
 app.use(express.static(path.join(__dirname, "client/build")));
+app.get("/UserSearch", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/src/components/UserSearch.js"));
+});
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
@@ -78,5 +81,7 @@ app.get("/UserSearch/Mentions/:name", async (req, res) => {
   }
   res.send(table);
 });
-
+app.get("*", (req, res) => {
+  res.sendStatus(404).send("Not Found");
+});
 app.listen(port, () => console.log(`listening on port ${port}`));
