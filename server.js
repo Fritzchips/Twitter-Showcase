@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 
+app.get("/images/:name", (req, res) => {
+  res.sendFile(path.join(__dirname, `client/src/images/${req.params.name}`));
+});
+
 //modify and refactor later
 app.get("/UserSearch/Timeline/:name", async (req, res) => {
   const table = [];
