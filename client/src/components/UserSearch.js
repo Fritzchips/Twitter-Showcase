@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import ShowItems from "./ShowItems";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 function UserSearch() {
   const [search, setSearch] = useState("");
@@ -46,64 +50,37 @@ function UserSearch() {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <label>Looking for someone?</label>
-        <input
-          type="text"
-          value={search}
-          placeholder="elonmusk"
-          onChange={(e) => setSearch(e.target.value)}
-        ></input>
-        <label>Search by:</label>
-        <select onChange={(e) => setSearchType(e.target.value)}>
-          <option value="username">UserName</option>
-          <option value="content">Content</option>
-        </select>
-        <button>Find</button>
-      </form>
+      <Form onSubmit={submitHandler}>
+        <Row>
+          <Form.Group as={Col} xs={4} controlId="inputField">
+            <Form.Label>Searching for someone?</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="elonmusk"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} xs={4} controlId="searchField">
+            <Form.Label>Filter</Form.Label>
+            <Form.Control
+              as="select"
+              onChange={(e) => setSearchType(e.target.value)}
+            >
+              <option value="username">@ UserName</option>
+              <option value="content">@ Content</option>
+            </Form.Control>
+          </Form.Group>
+          <span as={Col} xs={4}>
+            <Button variant="primary" type="submit">
+              Find
+            </Button>
+          </span>
+        </Row>
+      </Form>
       <div>
-        <div
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <ol className="carousel-indicators">
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div className="carousel-inner">
-            {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
+        {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
       </div>
     </div>
   );

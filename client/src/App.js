@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
 function App() {
   //To Do: add nav dropdown for smaller screens
@@ -17,7 +18,7 @@ function App() {
         <img src="/images/crop-twitter.png" style={{ height: "50px" }} />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto d-flex flex-row justify-content-around">
             <Link className="nav-link" to={"/"}>
               Home
             </Link>
@@ -30,11 +31,13 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Switch>
-        <Route exact path={"/"} component={HomePage} />
-        <Route exact path={"/UserSearch"} component={UserSearch} />
-        <Route exact path={"/RandomTweet"} component={RandomTweet} />
-      </Switch>
+      <Container>
+        <Switch>
+          <Route exact path={"/"} component={HomePage} />
+          <Route exact path={"/UserSearch"} component={UserSearch} />
+          <Route exact path={"/RandomTweet"} component={RandomTweet} />
+        </Switch>
+      </Container>
     </div>
   );
 }
