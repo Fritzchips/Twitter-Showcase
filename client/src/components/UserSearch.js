@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 
 function UserSearch() {
   const [search, setSearch] = useState("");
@@ -50,35 +51,44 @@ function UserSearch() {
 
   return (
     <div>
-      <Form onSubmit={submitHandler}>
-        <Row>
-          <Form.Group as={Col} xs={4} controlId="inputField">
-            <Form.Label>Searching for someone?</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="elonmusk"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Form.Group>
+      <Container>
+        <Form
+          onSubmit={submitHandler}
+          className="d-flex flex-column align-items-center"
+        >
+          <Row>
+            <Form.Group as={Col} xs="auto" controlId="inputField">
+              <Form.Label>Searching for someone?</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="elonmusk"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form.Group>
 
-          <Form.Group as={Col} xs={4} controlId="searchField">
-            <Form.Label>Filter</Form.Label>
-            <Form.Control
-              as="select"
-              onChange={(e) => setSearchType(e.target.value)}
-            >
-              <option value="username">@ UserName</option>
-              <option value="content">@ Content</option>
-            </Form.Control>
-          </Form.Group>
-          <span as={Col} xs={4}>
-            <Button variant="primary" type="submit">
-              Find
-            </Button>
-          </span>
-        </Row>
-      </Form>
+            <Form.Group as={Col} xs="auto" controlId="searchField">
+              <Form.Label>Filter</Form.Label>
+              <Form.Control
+                as="select"
+                onChange={(e) => setSearchType(e.target.value)}
+              >
+                <option value="username">@ UserName</option>
+                <option value="content">@ Content</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} xs="auto">
+              <Button
+                variant="primary"
+                type="submit"
+                style={{ marginTop: "30px" }}
+              >
+                Find
+              </Button>
+            </Form.Group>
+          </Row>
+        </Form>
+      </Container>
       <div>
         {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
       </div>

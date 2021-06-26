@@ -14,11 +14,18 @@ function App() {
   //To Do: add nav dropdown for smaller screens
   return (
     <div className="App">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <img src="/images/crop-twitter.png" style={{ height: "50px" }} />
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
+        <img
+          src="/images/crop-twitter.png"
+          style={{ height: "50px", marginLeft: "5%" }}
+        />
+        {/* <div className="d-flex flex-column "> */}
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          style={{ marginRight: "5%" }}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto d-flex flex-row justify-content-around">
+          <Nav className="mr-auto d-flex flex-row justify-content-around align-items-center">
             <Link className="nav-link" to={"/"}>
               Home
             </Link>
