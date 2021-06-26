@@ -26,10 +26,10 @@ function RandomTweet() {
   async function findingPerson(name) {
     try {
       const person = await axios.get(`/UserSearch/findId/${name}`);
-      const personId = person.data;
-      const getTweets = await axios.get(`/UserSearch/findTweets/${personId}`);
-      const talbe = getTweets.data;
-      console.log(talbe);
+      /* const personId = person.data; */
+      /* const getTweets = await axios.get(`/UserSearch/findTweets/${personId}`);
+      const talbe = getTweets.data; */
+      console.log(person);
       /* setTimeLine(getTweets.data); */
     } catch (error) {
       console.error(error);

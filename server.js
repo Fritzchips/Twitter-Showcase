@@ -50,29 +50,51 @@ app.get("/UserSearch/findId/:name", async (req, res) => {
     const response = await authAxios.get(
       `https://api.twitter.com/2/users/by/username/${req.params.name}?user.fields=profile_image_url`
     );
-    console.log(response.data.data);
-    idInfo = response.data.data.id;
+    const tweetInfo = await getInformation(response.data.data);
+    idInfo = tweetInfo;
   } catch (error) {
     console.error(error);
   }
+
   res.send(idInfo);
 });
 
-app.get("/UserSearch/findTweets/:id", async (req, res) => {
+async function getInformation(userInfo) {
   const table = [];
   try {
     const response = await authAxios.get(
-      `https://api.twitter.com/2/users/${req.params.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
+      `https://api.twitter.com/2/users/${userInfo.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
     );
     const allItems = response.data.data;
+
     const mediaStuff = response.data.includes.media;
-    const userStuff = response.data.includes.user;
-    table.push(allItems);
+    allItems.map((item) => {
+      const numberOfKeys = item.attachments.media_keys;
+      let listImage;
+      if (numberOfKeys) {
+        const mediaKey = numberOfKeys;
+        console.log(mediaKey);
+      }
+
+      const itemInfo = {
+        postId: item.id,
+        userName: userInfo.username,
+        screenName: userInfo.name,
+        text: item.text,
+        time: item.created_at,
+        retweet: item.public_metrics.retweet_count,
+        like: item.public_metrics.like_count,
+        profileImage: userInfo.profile_image_url,
+        contentLink: listImage,
+        /* contentType:  */
+      };
+      table.push(itemInfo);
+    });
   } catch (error) {
     console.error(error);
   }
-  res.send(table);
-});
+  return table;
+}
 
 //modify and refactor later
 /* app.get("/UserSearch/Timeline/:name", async (req, res) => {
