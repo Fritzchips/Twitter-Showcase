@@ -11,24 +11,22 @@ import Container from "react-bootstrap/Container";
 function UserSearch() {
   const [search, setSearch] = useState("");
   const [timeline, setTimeLine] = useState([]);
-  const [searchType, setSearchType] = useState("username");
+  const [searchType, setSearchType] = useState("tweets");
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (search) {
-      if (searchType === "username") {
-        findingPerson(search);
-      } else {
-        findingContent(search);
-      }
+      findingPerson(search, searchType);
     }
   };
-  async function findingPerson(search) {
-    try {
-      const list = await axios.get(`/UserSearch/Timeline/${search}`);
-      const findlist = list.data;
 
-      setTimeLine(findlist);
+  async function findingPerson(search, searchType) {
+    try {
+      const list = await axios.get(`/UserSearch/${searchType}/${search}`);
+      console.log(list.data);
+      /* const findlist = list.data;*/
+
+      setTimeLine(list.data);
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +34,7 @@ function UserSearch() {
     setSearch("");
   }
 
-  async function findingContent(search) {
+  /* async function findingContent(search) {
     try {
       const list = await axios.get(`/UserSearch/Mentions/${search}`);
       const findlist = list.data;
@@ -47,7 +45,7 @@ function UserSearch() {
     }
 
     setSearch("");
-  }
+  } */
 
   return (
     <div>
@@ -73,8 +71,8 @@ function UserSearch() {
                 as="select"
                 onChange={(e) => setSearchType(e.target.value)}
               >
-                <option value="username">@ UserName</option>
-                <option value="content">@ Content</option>
+                <option value="tweets">@ UserName</option>
+                <option value="mentions">@ Content</option>
               </Form.Control>
             </Form.Group>
             <Form.Group as={Col} xs="auto">

@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 
 function RandomTweet() {
   const [timeline, setTimeLine] = useState([]);
-  const [buttonInfo, setButtonInfo] = useState([]);
 
   useEffect(() => {
     // set info of users you want for buttons in an array
@@ -25,7 +24,7 @@ function RandomTweet() {
 
   async function findingPerson(name) {
     try {
-      const person = await axios.get(`/UserSearch/findId/${name}`);
+      const person = await axios.get(`/UserSearch/tweets/${name}`);
       /* const personId = person.data; */
       /* const getTweets = await axios.get(`/UserSearch/findTweets/${personId}`);
       const talbe = getTweets.data; */

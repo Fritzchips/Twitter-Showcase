@@ -10,7 +10,7 @@ const secretKey = "J5dnOCpKnwJxKhYj9cuZBju6sp0OUJdJcAUh3E0U9XZtKPSEdK";
 const bearerToken =
   "AAAAAAAAAAAAAAAAAAAAAJYiQwEAAAAAPkUegO9fKDR6cN9gw0tfkUfeOyw%3DFx30W9HNYgqpJoKqC1nRGW1CUk5GVMsOSXP2WHuKEH1kRD0dS4";
 const authAxios = axios.create({
-  baseURL: "https://api.twitter.com/2/",
+  baseURL: "https://api.twitter.com/2",
   headers: {
     Accept: `application/json`,
     Authorization: `Bearer ${bearerToken}`,
@@ -34,18 +34,26 @@ app.get("/images/:name", (req, res) => {
 });
 
 //find userId
-app.get("/UserSearch/findId/:name", async (req, res) => {
+app.get("/UserSearch/:field/:name", async (req, res) => {
   let idInfo;
+  let fieldSearching = req.params.field;
+
   try {
     const response = await authAxios.get(
-      `https://api.twitter.com/2/users/by/username/${req.params.name}?user.fields=profile_image_url`
+      `/users/by/username/${req.params.name}?user.fields=profile_image_url`
     );
-    const tweetInfo = await getInformation(response.data.data);
-    idInfo = tweetInfo;
+    if (fieldSearching === "tweets") {
+      const tweetInfo = await getInformation(response.data.data);
+
+      idInfo = tweetInfo;
+    } else {
+      const tweetInfo = await getMentions(response.data.data);
+      idInfo = tweetInfo;
+    }
   } catch (error) {
     console.error(error);
   }
-
+  /* console.log(idInfo); */
   res.send(idInfo);
 });
 
@@ -53,15 +61,19 @@ async function getInformation(userInfo) {
   const table = [];
   try {
     const response = await authAxios.get(
-      `https://api.twitter.com/2/users/${userInfo.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
+      //Tweets or mentions
+      `/users/${userInfo.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
     );
     const allItems = response.data.data;
 
     const mediaStuff = response.data.includes.media;
     allItems.map((item) => {
-      const numberOfKeys = item.attachments.media_keys;
+      console.log(item);
+
       let listImage = [];
-      if (numberOfKeys) {
+
+      if (item.attachments) {
+        const numberOfKeys = item.attachments.media_keys;
         numberOfKeys.map((key) => {
           mediaStuff.filter((dataItem) => {
             if (key == dataItem.media_key) {
@@ -72,6 +84,8 @@ async function getInformation(userInfo) {
             }
           });
         });
+      } else {
+        console.log("nothing");
       }
 
       const itemInfo = {
@@ -93,69 +107,57 @@ async function getInformation(userInfo) {
   return table;
 }
 
-//modify and refactor later
-/* app.get("/UserSearch/Timeline/:name", async (req, res) => {
+async function getMentions(userInfo) {
   const table = [];
   try {
     const response = await authAxios.get(
-      //Searching by name and display timeline
-      `statuses/user_timeline.json?screen_name=${req.params.name}&tweet_mode=extended`
-      `https://api.twitter.com/2/users/${req.params.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
+      `/users/${userInfo.id}/mentions?expansions=author_id,attachments.media_keys&media.fields=url,preview_image_url&tweet.fields=conversation_id,created_at&user.fields=created_at,profile_image_url&max_results=7`
     );
-    const allData = response.data;
-    allData.map((item) => {
+    const allItems = response.data.data;
+
+    const mediaStuff = response.data.includes.media;
+    const mediaUser = response.data.includes.users;
+
+    console.log("mediaStuff", mediaStuff);
+    allItems.map((item) => {
+      let listImage = [];
+      if (item.attachments) {
+        item.attachments.media_keys.map((key) => {
+          mediaStuff.filter((dataItem) => {
+            if (key === dataItem.media_key) {
+              console.log("mediaInfo:", mediaStuff);
+              listImage.push({
+                mediaKey: dataItem.media_key,
+                url: dataItem.url || dataItem.preview_image_url,
+              });
+            }
+          });
+        });
+      }
+      let userInfo = mediaUser.filter((user) => user.id === item.author_id);
+
+      console.log("userInfo", userInfo[0]);
+
       const itemInfo = {
         postId: item.id,
-        userId: item.user.id,
-        userName: item.user.name,
-        screenName: item.user.screen_name,
-        context: item.text,
+        userId: item.author_id,
+        userName: userInfo[0].username,
+        screenName: userInfo[0].name,
+        text: item.text,
         time: item.created_at,
-        retweets: item.retweet_count,
-        favorite: item.favorite_count,
-        profileImage: item.user.profile_image_url,
-        contentLink: item.entities.urls,
+        /* retweet: item.public_metrics.retweet_count,
+        like: item.public_metrics.like_count, */
+        profileImage: userInfo[0].profile_image_url,
+        contentLink: listImage,
       };
-      if (table.length < 10) {
-        table.push(itemInfo);
-      }
+      table.push(itemInfo);
     });
   } catch (error) {
     console.error(error);
   }
 
-  res.send(table);
-});
-
-app.get("/UserSearch/Mentions/:name", async (req, res) => {
-  const table = [];
-  try {
-    const response = await authAxios.get(
-      Searching by name and mixed mentions
-      `search/tweets.json?q=${req.params.name}`
-    );
-    const allData = response.data.statuses;
-    allData.map((item) => {
-      const itemInfo = {
-        postId: item.id,
-        userName: item.user.name,
-        screenName: item.user.screen_name,
-        context: item.text,
-        time: item.created_at,
-        retweets: item.retweet_count,
-        favorite: item.favorite_count,
-        profileImage: item.user.profile_image_url,
-        contextImg: item.entities.media,
-      };
-      if (table.length < 10) {
-        table.push(itemInfo);
-      }
-    });
-  } catch (error) {
-    console.error(error);
-  }
-  res.send(table);
-}); */
+  return table;
+}
 
 app.get("*", (req, res) => {
   res.status(404).send("Page Not Found");
