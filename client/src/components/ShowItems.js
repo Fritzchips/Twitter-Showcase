@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
+import ImageDisplay from "./ImageDisplay";
 
 function ShowItems({ timeline }) {
   return (
@@ -23,7 +24,7 @@ function ShowItems({ timeline }) {
                     <span>
                       <strong>{item.screenName}</strong>
                     </span>
-                    <div>@{item.userName}</div>
+                    <div style={{ color: "gray" }}>@{item.userName}</div>
                   </span>
                 </span>
 
@@ -35,17 +36,21 @@ function ShowItems({ timeline }) {
                 </span>
               </header>
               <div className="card-text">
-                <div>{item.context}</div>
-                <img src={item.contextImg} />
+                <div>{item.text}</div>
+                {item.contentLink.length > 0 ? (
+                  <ImageDisplay contentLink={item.contentLink} />
+                ) : (
+                  <></>
+                )}
               </div>
               <div>{item.time}</div>
               <span>
                 <img src="/images/retweet.png" style={{ height: "30px" }} />
-                {item.retweets}
+                {item.retweet}
               </span>
               <span>
                 <img src="/images/like.png" style={{ height: "30px" }} />{" "}
-                {item.favorite}
+                {item.like}
               </span>
             </div>
           </div>

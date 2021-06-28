@@ -29,7 +29,7 @@ function RandomTweet() {
       /* const personId = person.data; */
       /* const getTweets = await axios.get(`/UserSearch/findTweets/${personId}`);
       const talbe = getTweets.data; */
-      console.log(person);
+      setTimeLine(person.data);
       /* setTimeLine(getTweets.data); */
     } catch (error) {
       console.error(error);

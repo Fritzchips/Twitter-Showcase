@@ -7,16 +7,6 @@ const axios = require("axios");
 const secretKey = "J5dnOCpKnwJxKhYj9cuZBju6sp0OUJdJcAUh3E0U9XZtKPSEdK";
  */
 
-/* const oauth_consumer_key = "jQXf0hnkSSEBMShRd9xAtNzua";
-const oauth_nonce = "TazoBibOrCk";
-const oauth_signature = "C6bBvIXBjiO9b53zYzI8Z7UD3g4%3D";
-const oauth_signature_method = "HMAC-SHA1";
-const oauth_timestamp = "1624669576";
-const oauth_version = "1.0";
-const oauth_token = "yx6RIgAAAAABQyKWAAABekXbSvo";
-const oauth_token_secret =
-  "WnlGaWxcuLRUPLALgobNVqjJeNJfJnLy&oauth_callback_confirmed=true"; */
-
 const bearerToken =
   "AAAAAAAAAAAAAAAAAAAAAJYiQwEAAAAAPkUegO9fKDR6cN9gw0tfkUfeOyw%3DFx30W9HNYgqpJoKqC1nRGW1CUk5GVMsOSXP2WHuKEH1kRD0dS4";
 const authAxios = axios.create({
@@ -70,10 +60,18 @@ async function getInformation(userInfo) {
     const mediaStuff = response.data.includes.media;
     allItems.map((item) => {
       const numberOfKeys = item.attachments.media_keys;
-      let listImage;
+      let listImage = [];
       if (numberOfKeys) {
-        const mediaKey = numberOfKeys;
-        console.log(mediaKey);
+        numberOfKeys.map((key) => {
+          mediaStuff.filter((dataItem) => {
+            if (key == dataItem.media_key) {
+              listImage.push({
+                mediaKey: dataItem.media_key,
+                url: dataItem.url || dataItem.preview_image_url,
+              });
+            }
+          });
+        });
       }
 
       const itemInfo = {
@@ -86,7 +84,6 @@ async function getInformation(userInfo) {
         like: item.public_metrics.like_count,
         profileImage: userInfo.profile_image_url,
         contentLink: listImage,
-        /* contentType:  */
       };
       table.push(itemInfo);
     });
