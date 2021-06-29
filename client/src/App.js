@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css";
 import HomePage from "./components/HomePage";
-import RandomTweet from "./components/RandomTweet";
-import UserSearch from "./components/UserSearch";
+import TopPicksPage from "./components/TopPicksPage";
+import SearchPage from "./components/SearchPage";
 import { Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -35,10 +34,10 @@ function App() {
             <Link className="nav-link" to={"/"}>
               Home
             </Link>
-            <Link className="nav-link" to={"/UserSearch"}>
+            <Link className="nav-link" to={"/search"}>
               UserSearch
             </Link>
-            <Link className="nav-link" to={"/RandomTweet"}>
+            <Link className="nav-link" to={"/top-picks"}>
               RandomTweets
             </Link>
           </Nav>
@@ -47,8 +46,8 @@ function App() {
       <Container>
         <Switch>
           <Route exact path={"/"} component={HomePage} />
-          <Route exact path={"/UserSearch"} component={UserSearch} />
-          <Route exact path={"/RandomTweet"} component={RandomTweet} />
+          <Route exact path={"/search"} component={SearchPage} />
+          <Route exact path={"/top-picks"} component={TopPicksPage} />
         </Switch>
       </Container>
     </div>

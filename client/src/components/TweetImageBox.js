@@ -1,6 +1,6 @@
 import React from "react";
 
-function ImageDisplay({ images }) {
+function TweetImageBox({ images }) {
   return (
     <div
       style={{
@@ -24,4 +24,4 @@ function ImageDisplay({ images }) {
   );
 }
 
-export default ImageDisplay;
+export default TweetImageBox;

@@ -1,9 +1,8 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
-import ImageDisplay from "./ImageDisplay";
+import TweetImageBox from "./TweetImageBox";
 
-function ShowItems({ timeline }) {
+function TweetsCard({ timeline }) {
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
@@ -56,7 +55,7 @@ function ShowItems({ timeline }) {
                 </div>
                 <div>
                   {item.images.length > 0 ? (
-                    <ImageDisplay images={item.images} />
+                    <TweetImageBox images={item.images} />
                   ) : (
                     <></>
                   )}
@@ -92,4 +91,4 @@ function ShowItems({ timeline }) {
   );
 }
 
-export default ShowItems;
+export default TweetsCard;

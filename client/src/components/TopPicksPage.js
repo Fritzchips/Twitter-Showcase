@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ShowItems from "./ShowItems";
+import TweetsCard from "./TweetsCard";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 
-function RandomTweet() {
+function TopPicksPage() {
   const [timeline, setTimeLine] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -49,10 +49,10 @@ function RandomTweet() {
       </Container>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
-        {timeline.length >= 1 ? <ShowItems timeline={timeline} /> : <></>}
+        {timeline.length >= 1 ? <TweetsCard timeline={timeline} /> : <></>}
       </div>
     </div>
   );
 }
 
-export default RandomTweet;
+export default TopPicksPage;

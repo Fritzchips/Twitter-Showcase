@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ShowItems from "./ShowItems";
-import "bootstrap/dist/css/bootstrap.min.css";
+import TweetsCard from "./TweetsCard";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -9,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 
-function UserSearch() {
+function SearchPage() {
   const [search, setSearch] = useState("");
   const [timeline, setTimeLine] = useState([]);
   const [searchType, setSearchType] = useState("tweets");
@@ -92,10 +91,10 @@ function UserSearch() {
       </Container>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
-        {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
+        {timeline.length > 1 ? <TweetsCard timeline={timeline} /> : <></>}
       </div>
     </div>
   );
 }
 
-export default UserSearch;
+export default SearchPage;

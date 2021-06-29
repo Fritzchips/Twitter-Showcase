@@ -15,10 +15,10 @@ const authAxios = axios.create({
 });
 
 app.use(express.static(path.join(__dirname, "client/build")));
-app.get("/UserSearch", (req, res) => {
+app.get("/search", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
-app.get("/RandomTweet", (req, res) => {
+app.get("/top-picks", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 
@@ -68,7 +68,7 @@ function findMediaUrl(mediaStuff, numberOfKeys) {
 }
 
 async function getTimeline(userInfo) {
-  const table = [];
+  const listOfTweets = [];
   try {
     const response = await authAxios.get(
       `/users/${userInfo.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
@@ -86,7 +86,7 @@ async function getTimeline(userInfo) {
         imageList = findMediaUrl(mediaStuff, numberOfKeys);
       }
 
-      const tweetInfo = {
+      const postInfo = {
         postId: item.id,
         userName: userInfo.username,
         screenName: userInfo.name,
@@ -97,16 +97,16 @@ async function getTimeline(userInfo) {
         profileImage: userInfo.profile_image_url,
         images: imageList,
       };
-      table.push(tweetInfo);
+      listOfTweets.push(postInfo);
     });
   } catch (error) {
     console.error(error);
   }
-  return table;
+  return listOfTweets;
 }
 
 async function getMentions(userInfo) {
-  const table = [];
+  const listOfMentions = [];
   try {
     const response = await authAxios.get(
       `/users/${userInfo.id}/mentions?expansions=author_id,attachments.media_keys&media.fields=url,preview_image_url&tweet.fields=conversation_id,created_at&user.fields=created_at,profile_image_url&max_results=7`
@@ -116,49 +116,33 @@ async function getMentions(userInfo) {
     const mediaStuff = response.data.includes.media;
     const mediaUser = response.data.includes.users;
 
-    console.log("mediaStuff", mediaStuff);
     allItems.map((item) => {
-      let listImage = [];
+      const timeCreated = new Date(item.created_at);
+      const convertedDate = timeCreated.toDateString();
+      const userInfo = mediaUser.filter((user) => user.id === item.author_id);
+      let imageList = [];
       if (item.attachments) {
-        item.attachments.media_keys.map((key) => {
-          mediaStuff.filter((dataItem) => {
-            if (key === dataItem.media_key) {
-              console.log("mediaInfo:", mediaStuff);
-              listImage.push({
-                mediaKey: dataItem.media_key,
-                url: dataItem.url || dataItem.preview_image_url,
-              });
-            }
-          });
-        });
+        const numberOfKeys = item.attachments.media_keys;
+        imageList = findMediaUrl(mediaStuff, numberOfKeys);
       }
-      let userInfo = mediaUser.filter((user) => user.id === item.author_id);
 
-      let time = item.created_at;
-
-      let checkValuess = new Date(time);
-      let newValues = checkValuess.toDateString();
-
-      const itemInfo = {
+      const postInfo = {
         postId: item.id,
         userId: item.author_id,
         userName: userInfo[0].username,
         screenName: userInfo[0].name,
         text: item.text,
-        time: newValues,
-
-        /* retweet: item.public_metrics.retweet_count,
-        like: item.public_metrics.like_count, */
+        time: convertedDate,
         profileImage: userInfo[0].profile_image_url,
-        contentLink: listImage,
+        images: imageList,
       };
-      table.push(itemInfo);
+      listOfMentions.push(postInfo);
     });
   } catch (error) {
     console.error(error);
   }
 
-  return table;
+  return listOfMentions;
 }
 
 app.get("*", (req, res) => {
