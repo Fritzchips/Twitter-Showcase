@@ -5,46 +5,42 @@ function HomePage() {
   return (
     <div>
       <header>
-        <h1>Twitter Showcase</h1>
+        <h1>Travel Tweets</h1>
       </header>
       <Carousel fade>
         <Carousel.Item>
-          <span></span>
-          <img
-            className="d-block w-100"
-            src="/images/twitter.png"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
+          <div className="d-flex">
+            <span>
+              <p>Relax and enjoy travelling without missing a beat!</p>
+              <p>Stay uptodate with the latest Trends</p>
+            </span>
+            <span>
+              <img
+                className="d-block w-100"
+                src="/images/beach.png"
+                alt="First slide"
+                style={{ borderRadius: "50%" }}
+              />
+            </span>
+          </div>
         </Carousel.Item>
         <Carousel.Item>
+          <p>Find the latest info on your favorite people </p>
           <img
             className="d-block w-100"
             src="/images/circle-twitter.png"
             alt="Second slide"
+            style={{ width: "100px" }}
           />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
+          <p>See random tweets from my top picks!</p>
           <img
             className="d-block w-100"
             src="/images/latest-twitter.png"
             alt="Third slide"
+            style={{ width: "100px" }}
           />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     </div>

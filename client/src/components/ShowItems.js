@@ -11,7 +11,10 @@ function ShowItems({ timeline }) {
           <div
             key={item.postId}
             className="card"
-            style={{ width: "600px", margin: "10px" }}
+            style={{
+              width: "600px",
+              margin: "10px",
+            }}
           >
             <div className="card-body">
               <header className="card-title d-flex flex-row justify-content-between">
@@ -24,7 +27,7 @@ function ShowItems({ timeline }) {
                     <span>
                       <strong>{item.screenName}</strong>
                     </span>
-                    <div style={{ color: "gray" }}>@{item.userName}</div>
+                    <div style={{ color: "#AAB8C2" }}>@{item.userName}</div>
                   </span>
                 </span>
 
@@ -43,15 +46,28 @@ function ShowItems({ timeline }) {
                   <></>
                 )}
               </div>
-              <div>{item.time}</div>
-              <span>
-                <img src="/images/retweet.png" style={{ height: "30px" }} />
-                {item.retweet}
-              </span>
-              <span>
-                <img src="/images/like.png" style={{ height: "30px" }} />{" "}
-                {item.like}
-              </span>
+              <div className="text-start">{item.time}</div>
+              <hr></hr>
+              <div className="d-flex justify-content-around">
+                <span>
+                  <img
+                    src="/images/retweet.png"
+                    style={{
+                      height: "30px",
+                      width: "25px",
+                      marginRight: "10px",
+                    }}
+                  />
+                  {item.retweet}
+                </span>
+                <span>
+                  <img
+                    src="/images/like.png"
+                    style={{ height: "30px", marginRight: "10px" }}
+                  />
+                  {item.like}
+                </span>
+              </div>
             </div>
           </div>
         ))}

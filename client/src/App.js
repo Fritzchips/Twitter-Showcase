@@ -6,15 +6,18 @@ import UserSearch from "./components/UserSearch";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 
 function App() {
-  //To Do: add nav dropdown for smaller screens
   return (
     <div className="App">
-      <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="sm"
+        style={{ backgroundColor: "#1DA1F2" }}
+        variant="dark"
+      >
         <img
           src="/images/crop-twitter.png"
           style={{ height: "50px", marginLeft: "5%" }}
@@ -24,8 +27,11 @@ function App() {
           aria-controls="responsive-navbar-nav"
           style={{ marginRight: "5%" }}
         />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto d-flex flex-row justify-content-around align-items-center">
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-around "
+        >
+          <Nav className="mr-auto d-flex flex-row justify-content-around ">
             <Link className="nav-link" to={"/"}>
               Home
             </Link>

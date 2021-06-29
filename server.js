@@ -24,7 +24,9 @@ app.get("/UserSearch", (req, res) => {
 app.get("/RandomTweet", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
-
+/* app.get("/Home", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/public/index.html"));
+}); */
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
@@ -87,6 +89,18 @@ async function getInformation(userInfo) {
       } else {
         console.log("nothing");
       }
+
+      let source = item.source;
+      let time = item.created_at;
+      let timeNew = new Date(item.created_at);
+      let newerTime = timeNew.toUTCString();
+
+      let dateFormat = new Date(time.split("T")[0]);
+      let timeFormat = time.split("T")[1];
+      console.log("test date", dateFormat.toString());
+      console.log("test date", timeFormat.toString());
+      console.log("date I want:", Date(time).toString());
+      console.log("original", time);
 
       const itemInfo = {
         postId: item.id,
