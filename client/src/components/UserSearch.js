@@ -7,11 +7,13 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 
 function UserSearch() {
   const [search, setSearch] = useState("");
   const [timeline, setTimeLine] = useState([]);
   const [searchType, setSearchType] = useState("tweets");
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ function UserSearch() {
 
   async function findingPerson(search, searchType) {
     try {
+      setLoading(true);
       const list = await axios.get(`/UserSearch/${searchType}/${search}`);
       console.log(list.data);
       /* const findlist = list.data;*/
@@ -30,7 +33,7 @@ function UserSearch() {
     } catch (error) {
       console.error(error);
     }
-
+    setLoading(false);
     setSearch("");
   }
 
@@ -88,6 +91,7 @@ function UserSearch() {
         </Form>
       </Container>
       <div>
+        {loading ? <Spinner animation="border" variant="primary" /> : <></>}
         {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
       </div>
     </div>

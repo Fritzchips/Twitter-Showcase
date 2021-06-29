@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ShowItems from "./ShowItems";
 import Button from "react-bootstrap/Button";
-
+import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 
 function RandomTweet() {
   const [timeline, setTimeLine] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // set info of users you want for buttons in an array
@@ -23,6 +24,7 @@ function RandomTweet() {
   };
 
   async function findingPerson(name) {
+    setLoading(true);
     try {
       const person = await axios.get(`/UserSearch/tweets/${name}`);
       /* const personId = person.data; */
@@ -33,6 +35,7 @@ function RandomTweet() {
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   }
   return (
     <div>
@@ -58,6 +61,7 @@ function RandomTweet() {
         </Button>
       </Container>
       <div>
+        {loading ? <Spinner animation="border" variant="primary" /> : <></>}
         {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
       </div>
     </div>

@@ -18,17 +18,22 @@ function ShowItems({ timeline }) {
           >
             <div className="card-body">
               <header className="card-title d-flex flex-row justify-content-between">
-                <span>
-                  <img
-                    src={item.profileImage}
-                    style={{ borderRadius: "50%" }}
-                  ></img>
-                  <span>
-                    <span>
+                <span className="d-flex flex-row ">
+                  <div>
+                    <img
+                      src={item.profileImage}
+                      style={{ borderRadius: "50%" }}
+                    ></img>
+                  </div>
+                  <div className="d-flex align-items-start flex-column">
+                    <div>
                       <strong>{item.screenName}</strong>
-                    </span>
-                    <div style={{ color: "#AAB8C2" }}>@{item.userName}</div>
-                  </span>
+                    </div>
+
+                    <div style={{ color: "#AAB8C2", position: "relative" }}>
+                      @{item.userName}
+                    </div>
+                  </div>
                 </span>
 
                 <span>
@@ -38,13 +43,17 @@ function ShowItems({ timeline }) {
                   />
                 </span>
               </header>
-              <div className="card-text">
-                <div>{item.text}</div>
-                {item.contentLink.length > 0 ? (
-                  <ImageDisplay contentLink={item.contentLink} />
-                ) : (
-                  <></>
-                )}
+              <div className="card-text d-flex flex-column">
+                <div className="d-flex align-items-start">
+                  <div style={{ fontSize: "25px" }}>{item.text}</div>
+                </div>
+                <div>
+                  {item.contentLink.length > 0 ? (
+                    <ImageDisplay contentLink={item.contentLink} />
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </div>
               <div className="text-start">{item.time}</div>
               <hr></hr>
