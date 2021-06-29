@@ -12,7 +12,8 @@ function ShowItems({ timeline }) {
             key={item.postId}
             className="card"
             style={{
-              width: "600px",
+              minWidth: "300px",
+              maxWidth: "600px",
               margin: "10px",
             }}
           >
@@ -39,13 +40,19 @@ function ShowItems({ timeline }) {
                 <span>
                   <img
                     src="/images/latest-twitter.png"
-                    style={{ height: "30px" }}
+                    style={{ height: "25px" }}
                   />
                 </span>
               </header>
               <div className="card-text d-flex flex-column">
                 <div className="d-flex align-items-start">
-                  <div style={{ fontSize: "25px" }}>{item.text}</div>
+                  <div
+                    style={{
+                      fontSize: "20px",
+                    }}
+                  >
+                    {item.text}
+                  </div>
                 </div>
                 <div>
                   {item.contentLink.length > 0 ? (

@@ -1,17 +1,21 @@
 import React from "react";
 
 function ImageDisplay({ contentLink }) {
-  let styleValue = "280px";
-  if (contentLink.length === 1) {
-    styleValue = "550px";
-  }
   return (
-    <div className="d-flex flex-wrap align-items-center justify-content-center">
+    <div
+      style={{
+        marginLeft: "3%",
+        marginRight: "3%",
+        height: "100%",
+        /* minHeight: "75%", */
+      }}
+      className="d-flex flex-warp align-items-center justify-content-center "
+    >
       {contentLink.map((image) => (
         <div key={image.mediaKey}>
           <img
             src={image.url}
-            style={{ maxWidth: `${styleValue}` }}
+            style={{ maxWidth: "100%", maxHeight: "100%" }}
             className="rounded"
           />
         </div>

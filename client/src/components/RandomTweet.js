@@ -30,7 +30,9 @@ function RandomTweet() {
       /* const personId = person.data; */
       /* const getTweets = await axios.get(`/UserSearch/findTweets/${personId}`);
       const talbe = getTweets.data; */
-      setTimeLine(person.data);
+      let number = Math.floor(Math.random() * person.data.length);
+      console.log(person.data[number]);
+      setTimeLine([person.data[number]]);
       /* setTimeLine(getTweets.data); */
     } catch (error) {
       console.error(error);
@@ -62,7 +64,7 @@ function RandomTweet() {
       </Container>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
-        {timeline.length > 1 ? <ShowItems timeline={timeline} /> : <></>}
+        {timeline.length >= 1 ? <ShowItems timeline={timeline} /> : <></>}
       </div>
     </div>
   );
