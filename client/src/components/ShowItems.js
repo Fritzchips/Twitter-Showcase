@@ -55,8 +55,8 @@ function ShowItems({ timeline }) {
                   </div>
                 </div>
                 <div>
-                  {item.contentLink.length > 0 ? (
-                    <ImageDisplay contentLink={item.contentLink} />
+                  {item.images.length > 0 ? (
+                    <ImageDisplay images={item.images} />
                   ) : (
                     <></>
                   )}

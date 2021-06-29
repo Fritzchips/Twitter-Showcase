@@ -25,7 +25,7 @@ function UserSearch() {
   async function findingPerson(search, searchType) {
     try {
       setLoading(true);
-      const list = await axios.get(`/UserSearch/${searchType}/${search}`);
+      const list = await axios.get(`/user/search/${searchType}/${search}`);
       console.log(list.data);
       /* const findlist = list.data;*/
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ImageDisplay({ contentLink }) {
+function ImageDisplay({ images }) {
   return (
     <div
       style={{
@@ -11,7 +11,7 @@ function ImageDisplay({ contentLink }) {
       }}
       className="d-flex flex-warp align-items-center justify-content-center "
     >
-      {contentLink.map((image) => (
+      {images.map((image) => (
         <div key={image.mediaKey}>
           <img
             src={image.url}

@@ -3,9 +3,6 @@ const app = express();
 const path = require("path");
 const port = process.env.PORT || 5000;
 const axios = require("axios");
-/* const apiKey = "jQXf0hnkSSEBMShRd9xAtNzua";
-const secretKey = "J5dnOCpKnwJxKhYj9cuZBju6sp0OUJdJcAUh3E0U9XZtKPSEdK";
- */
 
 const bearerToken =
   "AAAAAAAAAAAAAAAAAAAAAJYiQwEAAAAAPkUegO9fKDR6cN9gw0tfkUfeOyw%3DFx30W9HNYgqpJoKqC1nRGW1CUk5GVMsOSXP2WHuKEH1kRD0dS4";
@@ -24,9 +21,7 @@ app.get("/UserSearch", (req, res) => {
 app.get("/RandomTweet", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
-/* app.get("/Home", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
-}); */
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
@@ -35,85 +30,74 @@ app.get("/images/:name", (req, res) => {
   res.sendFile(path.join(__dirname, `client/src/images/${req.params.name}`));
 });
 
-//find userId
-app.get("/UserSearch/:field/:name", async (req, res) => {
-  let idInfo;
-  let fieldSearching = req.params.field;
+app.get("/user/search/:field/:name", async (req, res) => {
+  let listOfPost;
+  const searchField = req.params.field;
 
   try {
-    const response = await authAxios.get(
+    const findPersonId = await authAxios.get(
       `/users/by/username/${req.params.name}?user.fields=profile_image_url`
     );
-    if (fieldSearching === "tweets") {
-      const tweetInfo = await getInformation(response.data.data);
-
-      idInfo = tweetInfo;
+    if (searchField === "tweets") {
+      const tweetInfo = await getTimeline(findPersonId.data.data);
+      listOfPost = tweetInfo;
     } else {
-      const tweetInfo = await getMentions(response.data.data);
-      idInfo = tweetInfo;
+      const tweetInfo = await getMentions(findPersonId.data.data);
+      listOfPost = tweetInfo;
     }
   } catch (error) {
     console.error(error);
   }
-  /* console.log(idInfo); */
-  res.send(idInfo);
+  res.send(listOfPost);
 });
 
-async function getInformation(userInfo) {
+function findMediaUrl(mediaStuff, numberOfKeys) {
+  let findImages = [];
+  numberOfKeys.map((key) => {
+    mediaStuff.filter((dataItem) => {
+      if (key == dataItem.media_key) {
+        findImages.push({
+          mediaKey: dataItem.media_key,
+          url: dataItem.url || dataItem.preview_image_url,
+        });
+      }
+    });
+  });
+
+  return findImages;
+}
+
+async function getTimeline(userInfo) {
   const table = [];
   try {
     const response = await authAxios.get(
-      //Tweets or mentions
       `/users/${userInfo.id}/tweets?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,referenced_tweets.id&tweet.fields=attachments,author_id,conversation_id,created_at,id,referenced_tweets,source,text,public_metrics&user.fields=created_at,id,name,pinned_tweet_id,profile_image_url,url,username&place.fields=contained_within,full_name,id,name&poll.fields=duration_minutes,end_datetime,id,options,voting_status&media.fields=duration_ms,media_key,preview_image_url,url,public_metrics&max_results=7`
     );
     const allItems = response.data.data;
-
     const mediaStuff = response.data.includes.media;
-    allItems.map((item) => {
-      console.log(item);
 
-      let listImage = [];
+    allItems.map((item) => {
+      const timeCreated = new Date(item.created_at);
+      const convertedDate = timeCreated.toDateString();
+      let imageList = [];
 
       if (item.attachments) {
         const numberOfKeys = item.attachments.media_keys;
-        numberOfKeys.map((key) => {
-          mediaStuff.filter((dataItem) => {
-            if (key == dataItem.media_key) {
-              listImage.push({
-                mediaKey: dataItem.media_key,
-                url: dataItem.url || dataItem.preview_image_url,
-              });
-            }
-          });
-        });
-      } else {
-        console.log("nothing");
+        imageList = findMediaUrl(mediaStuff, numberOfKeys);
       }
 
-      let source = item.source;
-      let time = item.created_at;
-      let timeNew = new Date(item.created_at);
-      let newerTime = timeNew.toUTCString();
-
-      let dateFormat = new Date(time.split("T")[0]);
-      let timeFormat = time.split("T")[1];
-      console.log("test date", dateFormat.toString());
-      console.log("test date", timeFormat.toString());
-      console.log("date I want:", Date(time).toString());
-      console.log("original", time);
-
-      const itemInfo = {
+      const tweetInfo = {
         postId: item.id,
         userName: userInfo.username,
         screenName: userInfo.name,
         text: item.text,
-        time: item.created_at,
+        time: convertedDate,
         retweet: item.public_metrics.retweet_count,
         like: item.public_metrics.like_count,
         profileImage: userInfo.profile_image_url,
-        contentLink: listImage,
+        images: imageList,
       };
-      table.push(itemInfo);
+      table.push(tweetInfo);
     });
   } catch (error) {
     console.error(error);
@@ -150,7 +134,10 @@ async function getMentions(userInfo) {
       }
       let userInfo = mediaUser.filter((user) => user.id === item.author_id);
 
-      console.log("userInfo", userInfo[0]);
+      let time = item.created_at;
+
+      let checkValuess = new Date(time);
+      let newValues = checkValuess.toDateString();
 
       const itemInfo = {
         postId: item.id,
@@ -158,7 +145,8 @@ async function getMentions(userInfo) {
         userName: userInfo[0].username,
         screenName: userInfo[0].name,
         text: item.text,
-        time: item.created_at,
+        time: newValues,
+
         /* retweet: item.public_metrics.retweet_count,
         like: item.public_metrics.like_count, */
         profileImage: userInfo[0].profile_image_url,
