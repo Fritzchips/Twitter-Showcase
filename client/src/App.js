@@ -21,24 +21,22 @@ function App() {
           src="/images/crop-twitter.png"
           style={{ height: "50px", marginLeft: "5%" }}
         />
+
         {/* <div className="d-flex flex-column "> */}
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           style={{ marginRight: "5%" }}
         />
-        <Navbar.Collapse
-          id="responsive-navbar-nav"
-          className="justify-content-around "
-        >
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto d-flex flex-row justify-content-around ">
             <Link className="nav-link" to={"/"}>
               Home
             </Link>
             <Link className="nav-link" to={"/search"}>
-              UserSearch
+              Tweets Search
             </Link>
             <Link className="nav-link" to={"/top-picks"}>
-              RandomTweets
+              Top Picks
             </Link>
           </Nav>
         </Navbar.Collapse>

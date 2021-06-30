@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import TweetsCard from "./TweetsCard";
 import Button from "react-bootstrap/Button";
@@ -6,19 +6,19 @@ import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 
 function TopPicksPage() {
-  const [timeline, setTimeLine] = useState([]);
+  const [listOfTweets, setListOfTweets] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const tweetHandler = (e) => {
-    findingPerson(e.target.value);
+    findRandomTweet(e.target.value);
   };
 
-  async function findingPerson(name) {
+  async function findRandomTweet(name) {
     setLoading(true);
     try {
       const person = await axios.get(`/user/search/tweets/${name}`);
       let number = Math.floor(Math.random() * person.data.length);
-      setTimeLine([person.data[number]]);
+      setListOfTweets([person.data[number]]);
     } catch (error) {
       console.error(error);
     }
@@ -32,13 +32,13 @@ function TopPicksPage() {
       <br></br>
       <Container>
         <Button variant="secondary" value="elonmusk" onClick={tweetHandler}>
-          elonmusk
+          Elonmusk
         </Button>
         <Button variant="secondary" value="magicjohnson" onClick={tweetHandler}>
-          magicjohnson
+          Magic Johnson
         </Button>
         <Button variant="secondary" value="playstation" onClick={tweetHandler}>
-          playstation
+          Playstation
         </Button>
         <Button variant="secondary" value="playstation" onClick={tweetHandler}>
           playstation
@@ -49,7 +49,11 @@ function TopPicksPage() {
       </Container>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
-        {timeline.length >= 1 ? <TweetsCard timeline={timeline} /> : <></>}
+        {listOfTweets.length > 0 ? (
+          <TweetsCard listOfTweets={listOfTweets} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

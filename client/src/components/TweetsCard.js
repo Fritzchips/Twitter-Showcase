@@ -2,11 +2,11 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import TweetImageBox from "./TweetImageBox";
 
-function TweetsCard({ timeline }) {
+function TweetsCard({ listOfTweets }) {
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
-        {timeline.map((item) => (
+        {listOfTweets.map((item) => (
           <div
             key={item.postId}
             className="card"
@@ -53,6 +53,7 @@ function TweetsCard({ timeline }) {
                     {item.text}
                   </div>
                 </div>
+                <br></br>
                 <div>
                   {item.images.length > 0 ? (
                     <TweetImageBox images={item.images} />
@@ -60,6 +61,7 @@ function TweetsCard({ timeline }) {
                     <></>
                   )}
                 </div>
+                {item.images.length > 0 ? <br></br> : <></>}
               </div>
               <div className="text-start">{item.time}</div>
               <hr></hr>

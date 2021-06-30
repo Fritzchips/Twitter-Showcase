@@ -9,49 +9,39 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 
 function SearchPage() {
-  const [search, setSearch] = useState("");
-  const [timeline, setTimeLine] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [listOfTweets, setListOfTweets] = useState([]);
   const [searchType, setSearchType] = useState("tweets");
   const [loading, setLoading] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (search) {
-      findingPerson(search, searchType);
+    if (searchInput) {
+      requestTweets(searchInput, searchType);
     }
   };
 
-  async function findingPerson(search, searchType) {
+  async function requestTweets(search, searchType) {
+    setLoading(true);
     try {
-      setLoading(true);
-      const list = await axios.get(`/user/search/${searchType}/${search}`);
-      console.log(list.data);
-      /* const findlist = list.data;*/
-
-      setTimeLine(list.data);
+      if (searchType === "content") {
+        const list = await axios.get(`/content/search/${search}`);
+        setListOfTweets(list.data);
+      } else {
+        const list = await axios.get(`/user/search/${searchType}/${search}`);
+        setListOfTweets(list.data);
+      }
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
-    setSearch("");
+    setSearchInput("");
   }
-
-  /* async function findingContent(search) {
-    try {
-      const list = await axios.get(`/UserSearch/Mentions/${search}`);
-      const findlist = list.data;
-
-      setTimeLine(findlist);
-    } catch (error) {
-      console.error(error);
-    }
-
-    setSearch("");
-  } */
 
   return (
     <div>
       <Container>
+        <br></br>
         <Form
           onSubmit={submitHandler}
           className="d-flex flex-column align-items-center"
@@ -62,19 +52,20 @@ function SearchPage() {
               <Form.Control
                 type="text"
                 placeholder="elonmusk"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group as={Col} xs="auto" controlId="searchField">
-              <Form.Label>Filter</Form.Label>
+              <Form.Label>What kind of Tweets do you want?</Form.Label>
               <Form.Control
                 as="select"
                 onChange={(e) => setSearchType(e.target.value)}
               >
-                <option value="tweets">@ UserName</option>
-                <option value="mentions">@ Content</option>
+                <option value="tweets">@ Timeline</option>
+                <option value="mentions">@ Mentions</option>
+                <option value="content">@ Relating Content</option>
               </Form.Control>
             </Form.Group>
             <Form.Group as={Col} xs="auto">
@@ -91,7 +82,11 @@ function SearchPage() {
       </Container>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
-        {timeline.length > 1 ? <TweetsCard timeline={timeline} /> : <></>}
+        {listOfTweets.length > 0 ? (
+          <TweetsCard listOfTweets={listOfTweets} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
