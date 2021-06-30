@@ -3,9 +3,9 @@ const app = express();
 const path = require("path");
 const port = process.env.PORT || 5000;
 const axios = require("axios");
+require("dotenv").config();
 
-const bearerToken =
-  "AAAAAAAAAAAAAAAAAAAAAJYiQwEAAAAAPkUegO9fKDR6cN9gw0tfkUfeOyw%3DFx30W9HNYgqpJoKqC1nRGW1CUk5GVMsOSXP2WHuKEH1kRD0dS4";
+const bearerToken = process.env.BEARER_TOKEN;
 const authAxios = axios.create({
   baseURL: "https://api.twitter.com/2",
   headers: {
