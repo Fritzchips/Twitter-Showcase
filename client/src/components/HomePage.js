@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <header>
-        <h1>Travel Tweets</h1>
+        <h1 style={{ fontFamily: "cursive" }}>Travel Tweets</h1>
       </header>
       <Carousel fade>
         <Carousel.Item>

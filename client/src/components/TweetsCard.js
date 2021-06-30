@@ -11,7 +11,7 @@ function TweetsCard({ listOfTweets }) {
             key={item.postId}
             className="card"
             style={{
-              minWidth: "300px",
+              minWidth: "600px",
               maxWidth: "600px",
               margin: "10px",
             }}
@@ -30,7 +30,7 @@ function TweetsCard({ listOfTweets }) {
                       <strong>{item.screenName}</strong>
                     </div>
 
-                    <div style={{ color: "#AAB8C2", position: "relative" }}>
+                    <div style={{ color: "#657786", position: "relative" }}>
                       @{item.userName}
                     </div>
                   </div>
@@ -63,7 +63,9 @@ function TweetsCard({ listOfTweets }) {
                 </div>
                 {item.images.length > 0 ? <br></br> : <></>}
               </div>
-              <div className="text-start">{item.time}</div>
+              <div className="text-start" style={{ color: "#657786" }}>
+                {item.time}
+              </div>
               <hr></hr>
               <div className="d-flex justify-content-around">
                 <span>

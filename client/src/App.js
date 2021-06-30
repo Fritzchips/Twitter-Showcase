@@ -21,7 +21,7 @@ function App() {
           src="/images/crop-twitter.png"
           style={{ height: "50px", marginLeft: "5%" }}
         />
-
+        <div>TRAVEL TWEETS</div>
         {/* <div className="d-flex flex-column "> */}
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"

@@ -27,7 +27,7 @@ function TopPicksPage() {
   return (
     <div>
       <header>
-        <h1>See some of my Favorites</h1>
+        <h1 style={{ fontFamily: "cursive" }}>Top Picks</h1>
       </header>
       <br></br>
       <Container>
