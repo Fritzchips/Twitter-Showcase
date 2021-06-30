@@ -54,6 +54,7 @@ function SearchPage() {
                 placeholder="elonmusk"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
+                style={{ borderRadius: "30px", width: "180px" }}
               />
             </Form.Group>
 
@@ -62,6 +63,7 @@ function SearchPage() {
               <Form.Control
                 as="select"
                 onChange={(e) => setSearchType(e.target.value)}
+                style={{ borderRadius: "30px", width: "180px" }}
               >
                 <option value="tweets">@ Timeline</option>
                 <option value="mentions">@ Mentions</option>
@@ -72,9 +74,9 @@ function SearchPage() {
               <Button
                 variant="primary"
                 type="submit"
-                style={{ marginTop: "30px" }}
+                style={{ marginTop: "30px", borderRadius: "30px" }}
               >
-                Find
+                Find Tweets
               </Button>
             </Form.Group>
           </Row>

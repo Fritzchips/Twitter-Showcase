@@ -2,21 +2,17 @@ import React from "react";
 
 function TweetImageBox({ images }) {
   return (
-    <div
-      style={{
-        marginLeft: "3%",
-        marginRight: "3%",
-        height: "100%",
-        /* minHeight: "75%", */
-      }}
-      className="d-flex flex-warp align-items-center justify-content-center "
-    >
+    <div className="d-flex flex-warp align-items-start  justify-content-around">
       {images.map((image) => (
         <div key={image.mediaKey}>
           <img
             src={image.url}
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-            className="rounded"
+            style={{
+              width: "100%",
+              height: "280px",
+              objectFit: "cover",
+            }}
+            className="rounded my-1"
           />
         </div>
       ))}

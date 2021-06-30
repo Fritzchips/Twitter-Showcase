@@ -18,24 +18,40 @@ function App() {
         variant="dark"
       >
         <img
-          src="/images/crop-twitter.png"
-          style={{ height: "50px", marginLeft: "5%" }}
+          src="/images/box-twitter2.png"
+          style={{ height: "60px", marginLeft: "5%" }}
         />
-        <div>TRAVEL TWEETS</div>
+        <div>
+          <strong>TRAVEL TWEETS</strong>
+        </div>
         {/* <div className="d-flex flex-column "> */}
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           style={{ marginRight: "5%" }}
         />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto d-flex flex-row justify-content-around ">
-            <Link className="nav-link" to={"/"}>
+          <Nav className="ml-auto d-flex flex-row justify-content-around ">
+            <Link
+              className="nav-link"
+              to={"/"}
+              style={{
+                fontSize: "20px",
+              }}
+            >
               Home
             </Link>
-            <Link className="nav-link" to={"/search"}>
+            <Link
+              className="nav-link"
+              to={"/search"}
+              style={{ fontSize: "20px" }}
+            >
               Tweets Search
             </Link>
-            <Link className="nav-link" to={"/top-picks"}>
+            <Link
+              className="nav-link"
+              to={"/top-picks"}
+              style={{ fontSize: "20px" }}
+            >
               Top Picks
             </Link>
           </Nav>

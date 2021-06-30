@@ -10,11 +10,7 @@ function TweetsCard({ listOfTweets }) {
           <div
             key={item.postId}
             className="card"
-            style={{
-              minWidth: "600px",
-              maxWidth: "600px",
-              margin: "10px",
-            }}
+            style={{ width: "100%", margin: "10px", maxWidth: "600px" }}
           >
             <div className="card-body">
               <header className="card-title d-flex flex-row justify-content-between">
@@ -22,9 +18,10 @@ function TweetsCard({ listOfTweets }) {
                   <div>
                     <img
                       src={item.profileImage}
-                      style={{ borderRadius: "50%" }}
+                      style={{ borderRadius: "50%", marginRight: "10px" }}
                     ></img>
                   </div>
+
                   <div className="d-flex align-items-start flex-column">
                     <div>
                       <strong>{item.screenName}</strong>
@@ -44,7 +41,7 @@ function TweetsCard({ listOfTweets }) {
                 </span>
               </header>
               <div className="card-text d-flex flex-column">
-                <div className="d-flex align-items-start">
+                <div className="d-flex align-items-start ">
                   <div
                     style={{
                       fontSize: "20px",
@@ -54,7 +51,12 @@ function TweetsCard({ listOfTweets }) {
                   </div>
                 </div>
                 <br></br>
-                <div>
+                <div
+                  style={{
+                    marginLeft: "3%",
+                    marginRight: "3%",
+                  }}
+                >
                   {item.images.length > 0 ? (
                     <TweetImageBox images={item.images} />
                   ) : (

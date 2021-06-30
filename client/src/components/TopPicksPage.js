@@ -31,22 +31,48 @@ function TopPicksPage() {
       </header>
       <br></br>
       <Container>
-        <Button variant="secondary" value="elonmusk" onClick={tweetHandler}>
+        <Button
+          variant="secondary"
+          value="elonmusk"
+          onClick={tweetHandler}
+          style={{ borderRadius: "30px" }}
+        >
           Elonmusk
         </Button>
-        <Button variant="secondary" value="magicjohnson" onClick={tweetHandler}>
+        <Button
+          variant="secondary"
+          value="magicjohnson"
+          onClick={tweetHandler}
+          style={{ borderRadius: "30px" }}
+        >
           Magic Johnson
         </Button>
-        <Button variant="secondary" value="playstation" onClick={tweetHandler}>
+        <Button
+          variant="secondary"
+          value="playstation"
+          onClick={tweetHandler}
+          style={{ borderRadius: "30px" }}
+        >
           Playstation
         </Button>
-        <Button variant="secondary" value="playstation" onClick={tweetHandler}>
+        <Button
+          variant="secondary"
+          value="playstation"
+          onClick={tweetHandler}
+          style={{ borderRadius: "30px" }}
+        >
           playstation
         </Button>
-        <Button variant="secondary" value="playstation" onClick={tweetHandler}>
+        <Button
+          variant="secondary"
+          value="playstation"
+          onClick={tweetHandler}
+          style={{ borderRadius: "30px" }}
+        >
           playstation
         </Button>
       </Container>
+      <br></br>
       <div>
         {loading ? <Spinner animation="border" variant="primary" /> : <></>}
         {listOfTweets.length > 0 ? (

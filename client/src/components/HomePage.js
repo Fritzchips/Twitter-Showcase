@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <header>
-        <h1 style={{ fontFamily: "cursive" }}>Travel Tweets</h1>
+        <h1>Welcome to Travel Tweets</h1>
       </header>
       <Carousel fade>
         <Carousel.Item>
@@ -17,7 +17,7 @@ function HomePage() {
             <span>
               <img
                 className="d-block w-100"
-                src="/images/beach.png"
+                src="/images/beach2.png"
                 alt="First slide"
                 style={{ borderRadius: "50%" }}
               />
