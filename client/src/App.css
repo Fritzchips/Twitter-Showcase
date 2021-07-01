@@ -1,7 +1,9 @@
 .App {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
+  background-color: #c9ecff;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 
 .App-logo {

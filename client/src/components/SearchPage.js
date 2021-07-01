@@ -65,9 +65,9 @@ function SearchPage() {
                 onChange={(e) => setSearchType(e.target.value)}
                 style={{ borderRadius: "30px", width: "180px" }}
               >
-                <option value="tweets">@ Timeline</option>
-                <option value="mentions">@ Mentions</option>
-                <option value="content">@ Relating Content</option>
+                <option value="tweets">@user Timeline</option>
+                <option value="mentions">@user Mentions</option>
+                <option value="content">Related Content</option>
               </Form.Control>
             </Form.Group>
 

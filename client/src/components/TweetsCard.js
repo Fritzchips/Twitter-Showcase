@@ -79,14 +79,14 @@ function TweetsCard({ listOfTweets }) {
                       marginRight: "10px",
                     }}
                   />
-                  {item.retweet}
+                  <strong>{item.retweet}</strong>
                 </span>
                 <span>
                   <img
                     src="/images/like.png"
                     style={{ height: "30px", marginRight: "10px" }}
                   />
-                  {item.like}
+                  <strong>{item.like}</strong>
                 </span>
               </div>
             </div>

@@ -5,11 +5,6 @@ import Container from "react-bootstrap/Container";
 function HomePage() {
   return (
     <div>
-      <img
-        className="position-absolute-center"
-        src="/images/background.jpg"
-        style={{ width: "100%", zIndex: "1" }}
-      />
       <Jumbotron fluid>
         <Container>
           <div style={{ zIndex: "10" }}>
