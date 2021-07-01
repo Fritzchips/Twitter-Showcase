@@ -16,11 +16,16 @@ function HomePage() {
             <h1>Welcome to Travel Tweets!</h1>
             <p>
               A full-stack Tweet generator that uses Axios to grab data from the
-              Twitter API. Data is controlled by the server using Node/Express
-              and rendered to the user with React. React is styled with
-              Bootstraps giving a smooth interface ready for you to use anywhere
-              during your travels.
+              Twitter API. Data is controlled by NodeJS/Express server and
+              rendered to the UI with React and Bootstraps.
             </p>
+            <p>Explore Travel Tweets with these great features</p>
+            <ul>
+              <li>
+                Find a user and check their most recent timeline or mentions
+              </li>
+              <li>Search any topic with content relating</li>
+            </ul>
           </div>
         </Container>
       </Jumbotron>

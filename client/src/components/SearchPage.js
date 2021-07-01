@@ -70,6 +70,7 @@ function SearchPage() {
                 <option value="content">@ Relating Content</option>
               </Form.Control>
             </Form.Group>
+
             <Form.Group as={Col} xs="auto">
               <Button
                 variant="primary"

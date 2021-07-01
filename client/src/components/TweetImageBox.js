@@ -6,7 +6,7 @@ function TweetImageBox({ images }) {
       {images.map((image) => (
         <div key={image.mediaKey}>
           <img
-            src={image.url}
+            src={image.imageUrl}
             style={{
               width: "100%",
               height: "280px",
