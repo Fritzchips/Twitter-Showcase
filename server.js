@@ -17,14 +17,14 @@ const authAxios = axios.create({
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("/search", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 app.get("/top-picks", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.get("/images/:name", (req, res) => {

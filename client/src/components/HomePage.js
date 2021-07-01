@@ -1,12 +1,33 @@
 import React from "react";
-import Carousel from "react-bootstrap/Carousel";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
 
 function HomePage() {
   return (
     <div>
-      <header>
+      <img
+        className="position-absolute-center"
+        src="/images/background.jpg"
+        style={{ width: "100%", zIndex: "1" }}
+      />
+      <Jumbotron fluid>
+        <Container>
+          <div style={{ zIndex: "10" }}>
+            <h1>Welcome to Travel Tweets!</h1>
+            <p>
+              A full-stack Tweet generator that uses Axios to grab data from the
+              Twitter API. Data is controlled by the server using Node/Express
+              and rendered to the user with React. React is styled with
+              Bootstraps giving a smooth interface ready for you to use anywhere
+              during your travels.
+            </p>
+          </div>
+        </Container>
+      </Jumbotron>
+      {/* <header>
         <h1>Welcome to Travel Tweets</h1>
-      </header>
+      </header> */}
+
       {/* <Carousel fade>
         <Carousel.Item>
           <div className="d-flex">

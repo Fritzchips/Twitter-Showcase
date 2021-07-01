@@ -44,7 +44,7 @@ function SearchPage() {
         <br></br>
         <Form
           onSubmit={submitHandler}
-          className="d-flex flex-column align-items-center"
+          className="d-flex flex-column align-items-center "
         >
           <Row>
             <Form.Group as={Col} xs="auto" controlId="inputField">

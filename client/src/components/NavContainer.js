@@ -30,7 +30,7 @@ function NavContainer() {
           style={{ marginRight: "5%" }}
         />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto d-flex flex-row justify-content-around ">
+          <Nav className="mr-auto d-flex flex-row justify-content-around ">
             <Link
               className="nav-link"
               to={"/"}
