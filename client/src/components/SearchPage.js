@@ -48,7 +48,7 @@ function SearchPage() {
         >
           <Row>
             <Form.Group as={Col} xs="auto" controlId="inputField">
-              <Form.Label>Searching for someone?</Form.Label>
+              <Form.Label>Searching for?</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="elonmusk"

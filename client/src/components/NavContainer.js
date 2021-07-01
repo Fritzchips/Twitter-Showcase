@@ -19,7 +19,7 @@ function NavContainer() {
         <div
           style={{
             fontFamily: "cursive",
-            fontSize: "22px",
+            fontSize: "25px",
             color: "yellow",
           }}
         >
@@ -30,7 +30,7 @@ function NavContainer() {
           style={{ marginRight: "5%" }}
         />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto d-flex flex-row justify-content-around ">
+          <Nav className="ml-auto d-flex flex-row justify-content-around ">
             <Link
               className="nav-link"
               to={"/"}

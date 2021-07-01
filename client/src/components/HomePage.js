@@ -3,68 +3,60 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 
 function HomePage() {
+  const backImage = "/images/beach.png";
   return (
-    <div>
-      <Jumbotron fluid>
-        <Container>
-          <div style={{ zIndex: "10" }}>
-            <h1>Welcome to Travel Tweets!</h1>
-            <p>
-              A full-stack Tweet generator that uses Axios to grab data from the
-              Twitter API. Data is controlled by NodeJS/Express server and
-              rendered to the UI with React and Bootstraps.
-            </p>
-            <p>Explore Travel Tweets with these great features</p>
-            <ul>
-              <li>
-                Find a user and check their most recent timeline or mentions
-              </li>
-              <li>Search any topic with content relating</li>
-            </ul>
-          </div>
-        </Container>
-      </Jumbotron>
-      {/* <header>
-        <h1>Welcome to Travel Tweets</h1>
-      </header> */}
-
-      {/* <Carousel fade>
-        <Carousel.Item>
-          <div className="d-flex">
-            <span>
-              <p>Relax and enjoy travelling without missing a beat!</p>
-              <p>Stay uptodate with the latest Trends</p>
-            </span>
-            <span>
-              <img
-                className="d-block w-100"
-                src="/images/beach2.png"
-                alt="First slide"
-                style={{ borderRadius: "50%" }}
-              />
-            </span>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <p>Find the latest info on your favorite people </p>
-          <img
-            className="d-block w-100"
-            src="/images/circle-twitter.png"
-            alt="Second slide"
-            style={{ width: "100px" }}
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <p>See random tweets from my top picks!</p>
-          <img
-            className="d-block w-100"
-            src="/images/latest-twitter.png"
-            alt="Third slide"
-            style={{ width: "100px" }}
-          />
-        </Carousel.Item>
-      </Carousel> */}
-    </div>
+    <Container fluid>
+      <br></br>
+      <div
+        style={{
+          backgroundImage: `url(${backImage})`,
+          borderRadius: "20px",
+          margin: "auto",
+          padding: "10px 30px 100px 30px",
+          maxWidth: "800px",
+          backgroundSize: "cover",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "rgba(0,0,0,0.5)",
+            borderRadius: "30px",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            top: "0",
+            left: "0",
+            zIndex: "10",
+          }}
+        >
+          <Jumbotron fluid>
+            <Container>
+              <div
+                style={{
+                  fontFamily: "cursive",
+                  color: "yellow",
+                  margin: "9% auto",
+                  padding: "20px",
+                  maxwidth: "80%",
+                }}
+              >
+                <h1>Welcome to Travel Tweets!</h1>
+                <p>
+                  A full-stack Tweet generator deployed to Heroku using
+                  NodeJS/Express, Axios, React and Bootstraps.
+                </p>
+                <p>
+                  Explore Tweets Search to discover hidden gems with related
+                  content or stay up to date with your favourite artists. Dive
+                  into my Top Picks for random tweets from a few of my
+                  favourites!
+                </p>
+              </div>
+            </Container>
+          </Jumbotron>
+        </div>
+      </div>
+    </Container>
   );
 }
 

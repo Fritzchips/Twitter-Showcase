@@ -92,6 +92,7 @@ function TweetsCard({ listOfTweets }) {
             </div>
           </div>
         ))}
+        <br></br>
       </div>
     </Container>
   );
