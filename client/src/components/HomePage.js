@@ -7,7 +7,7 @@ function HomePage() {
       <header>
         <h1>Welcome to Travel Tweets</h1>
       </header>
-      <Carousel fade>
+      {/* <Carousel fade>
         <Carousel.Item>
           <div className="d-flex">
             <span>
@@ -42,7 +42,7 @@ function HomePage() {
             style={{ width: "100px" }}
           />
         </Carousel.Item>
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 }

@@ -15,7 +15,8 @@ const authAxios = axios.create({
 });
 
 app.use(express.static(path.join(__dirname, "client/build")));
-app.get("/search", (req, res) => {
+
+app.get("/search", (req, res, next) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 app.get("/top-picks", (req, res) => {
