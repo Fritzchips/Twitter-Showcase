@@ -94,7 +94,7 @@ app.get("/content/search/:name", async (req, res) => {
   res.send(listOfContent);
 });
 
-function sortUserTimeline(response, userInfo) {
+async function sortUserTimeline(response, userInfo) {
   const twitterDataList = response.data.data;
   const twitterMediaList = response.data.includes.media;
 
@@ -107,7 +107,7 @@ function sortUserTimeline(response, userInfo) {
       const mediaKeyList = item.attachments.media_keys;
       imageList = findMediaUrl(twitterMediaList, mediaKeyList);
     }
-    console.log(userInfo.profile_image_url);
+
     const postInfo = {
       postId: item.id,
       userName: userInfo.username,
