@@ -94,7 +94,7 @@ app.get("/content/search/:name", async (req, res) => {
   res.send(listOfContent);
 });
 
-async function sortUserTimeline(response, userInfo) {
+function sortUserTimeline(response, userInfo) {
   const twitterDataList = response.data.data;
   const twitterMediaList = response.data.includes.media;
 
