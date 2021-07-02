@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/TweetsCard.css";
 
 function TweetImageBox({ images }) {
   return (
@@ -7,12 +8,7 @@ function TweetImageBox({ images }) {
         <div key={image.mediaKey}>
           <img
             src={image.imageUrl}
-            style={{
-              width: "100%",
-              height: "280px",
-              objectFit: "cover",
-            }}
-            className="rounded my-1"
+            className="rounded my-1 card-image-content"
           />
         </div>
       ))}

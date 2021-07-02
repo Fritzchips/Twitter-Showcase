@@ -9,15 +9,15 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 
 function SearchPage() {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [listOfTweets, setListOfTweets] = useState([]);
   const [searchType, setSearchType] = useState("tweets");
   const [loading, setLoading] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (searchInput) {
-      requestTweets(searchInput, searchType);
+    if (searchName) {
+      requestTweets(searchName, searchType);
     }
   };
 
@@ -25,17 +25,19 @@ function SearchPage() {
     setLoading(true);
     try {
       if (searchType === "content") {
-        const list = await axios.get(`/content/search/${search}`);
-        setListOfTweets(list.data);
+        const listOfCards = await axios.get(`/content/search/${search}`);
+        setListOfTweets(listOfCards.data);
       } else {
-        const list = await axios.get(`/user/search/${searchType}/${search}`);
-        setListOfTweets(list.data);
+        const listOfCards = await axios.get(
+          `/user/search/${searchType}/${search}`
+        );
+        setListOfTweets(listOfCards.data);
       }
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
-    setSearchInput("");
+    setSearchName("");
   }
 
   return (
@@ -52,8 +54,8 @@ function SearchPage() {
               <Form.Control
                 type="text"
                 placeholder="elonmusk"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
+                value={searchName}
+                onChange={(e) => setSearchName(e.target.value)}
                 style={{ borderRadius: "30px", width: "180px" }}
               />
             </Form.Group>
