@@ -42,6 +42,7 @@ app.get("/user/search/:field/:name", async (req, res) => {
     );
     if (searchType === "tweets") {
       const tweetInfo = await getTimeline(findPersonId.data.data);
+      console.log(tweetInfo);
       listOfPost = tweetInfo;
     } else {
       const tweetInfo = await getMentions(findPersonId.data.data);
