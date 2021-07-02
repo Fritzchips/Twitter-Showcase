@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import "../styles/NavContainer.css";
 
 function NavContainer() {
   return (
@@ -9,20 +10,11 @@ function NavContainer() {
       <Navbar
         collapseOnSelect
         expand="sm"
-        style={{ backgroundColor: "#1DA1F2" }}
+        className="nav-background"
         variant="dark"
       >
-        <img
-          src="/images/box-twitter2.png"
-          style={{ height: "60px", marginLeft: "5%" }}
-        />
-        <div
-          style={{
-            fontFamily: "cursive",
-            fontSize: "25px",
-            color: "yellow",
-          }}
-        >
+        <img src="/images/box-twitter.png" className="nav-logo" />
+        <div className="nav-title">
           <strong>TRAVEL TWEETS</strong>
         </div>
         <Navbar.Toggle
@@ -30,28 +22,14 @@ function NavContainer() {
           style={{ marginRight: "5%" }}
         />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto d-flex flex-row justify-content-around ">
-            <Link
-              className="nav-link"
-              to={"/"}
-              style={{
-                fontSize: "20px",
-              }}
-            >
+          <Nav className="ml-auto d-flex flex-row justify-content-around nav-links">
+            <Link className="nav-link" to={"/"}>
               Home
             </Link>
-            <Link
-              className="nav-link"
-              to={"/search"}
-              style={{ fontSize: "20px" }}
-            >
+            <Link className="nav-link" to={"/search"}>
               Tweets Search
             </Link>
-            <Link
-              className="nav-link"
-              to={"/top-picks"}
-              style={{ fontSize: "20px" }}
-            >
+            <Link className="nav-link" to={"/top-picks"}>
               Top Picks
             </Link>
           </Nav>

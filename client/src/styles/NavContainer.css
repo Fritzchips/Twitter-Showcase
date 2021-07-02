@@ -1,0 +1,18 @@
+.nav-logo {
+  height: 60px;
+  margin-left: 5%;
+}
+
+.nav-title {
+  font-family: cursive;
+  font-size: 25px;
+  color: yellow;
+}
+
+.nav-background {
+  background-color: #1da1f2;
+}
+
+.nav-links {
+  font-size: 20px;
+}

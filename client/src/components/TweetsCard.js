@@ -1,62 +1,43 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import TweetImageBox from "./TweetImageBox";
+import "../styles/TweetsCard.css";
 
 function TweetsCard({ listOfTweets }) {
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
         {listOfTweets.map((item) => (
-          <div
-            key={item.postId}
-            className="card"
-            style={{ width: "100%", margin: "10px", maxWidth: "600px" }}
-          >
+          <div key={item.postId} className="card card-container-size">
             <div className="card-body">
               <header className="card-title d-flex flex-row justify-content-between">
                 <span className="d-flex flex-row ">
                   <div>
                     <img
                       src={item.profileImage}
-                      style={{ borderRadius: "50%", marginRight: "10px" }}
+                      className="card-profile-image"
                     ></img>
                   </div>
-
                   <div className="d-flex align-items-start flex-column">
                     <div>
                       <strong>{item.screenName}</strong>
                     </div>
-
-                    <div style={{ color: "#657786", position: "relative" }}>
-                      @{item.userName}
-                    </div>
+                    <div className="card-username">@{item.userName}</div>
                   </div>
                 </span>
-
                 <span>
                   <img
                     src="/images/latest-twitter.png"
-                    style={{ height: "25px" }}
+                    className="card-bird-img"
                   />
                 </span>
               </header>
               <div className="card-text d-flex flex-column">
                 <div className="d-flex align-items-start ">
-                  <div
-                    style={{
-                      fontSize: "20px",
-                    }}
-                  >
-                    {item.text}
-                  </div>
+                  <div className="card-text-size">{item.text}</div>
                 </div>
                 <br></br>
-                <div
-                  style={{
-                    marginLeft: "3%",
-                    marginRight: "3%",
-                  }}
-                >
+                <div className="card-img-box">
                   {item.images.length > 0 ? (
                     <TweetImageBox images={item.images} />
                   ) : (
@@ -65,27 +46,15 @@ function TweetsCard({ listOfTweets }) {
                 </div>
                 {item.images.length > 0 ? <br></br> : <></>}
               </div>
-              <div className="text-start" style={{ color: "#657786" }}>
-                {item.time}
-              </div>
+              <div className="text-start card-time">{item.time}</div>
               <hr></hr>
               <div className="d-flex justify-content-around">
                 <span>
-                  <img
-                    src="/images/retweet.png"
-                    style={{
-                      height: "30px",
-                      width: "25px",
-                      marginRight: "10px",
-                    }}
-                  />
+                  <img src="/images/retweet.png" className="card-retweet" />
                   <strong>{item.retweet}</strong>
                 </span>
                 <span>
-                  <img
-                    src="/images/like.png"
-                    style={{ height: "30px", marginRight: "10px" }}
-                  />
+                  <img src="/images/like.png" className="card-like" />
                   <strong>{item.like}</strong>
                 </span>
               </div>

@@ -4,6 +4,7 @@ import TweetsCard from "./TweetsCard";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 function TopPicksPage() {
   const [listOfTweets, setListOfTweets] = useState([]);
@@ -32,21 +33,35 @@ function TopPicksPage() {
       </header>
       <br></br>
       <Container>
-        <Button variant="secondary" value="edsheeran" onClick={tweetHandler}>
-          Ed Sheeran
-        </Button>
-        <Button variant="secondary" value="magicjohnson" onClick={tweetHandler}>
-          Magic Johnson
-        </Button>
-        <Button variant="secondary" value="playstation" onClick={tweetHandler}>
-          Playstation
-        </Button>
-        <Button variant="secondary" value="disney" onClick={tweetHandler}>
-          Disney
-        </Button>
-        <Button variant="secondary" value="gordonramsay" onClick={tweetHandler}>
-          Gordon Ramsay
-        </Button>
+        <ButtonGroup aria-label="Basic example">
+          <Button variant="secondary" value="edsheeran" onClick={tweetHandler}>
+            Ed Sheeran
+          </Button>
+          <Button
+            variant="secondary"
+            value="magicjohnson"
+            onClick={tweetHandler}
+          >
+            Magic Johnson
+          </Button>
+          <Button
+            variant="secondary"
+            value="playstation"
+            onClick={tweetHandler}
+          >
+            Playstation
+          </Button>
+          <Button variant="secondary" value="disney" onClick={tweetHandler}>
+            Disney
+          </Button>
+          <Button
+            variant="secondary"
+            value="gordonramsay"
+            onClick={tweetHandler}
+          >
+            Gordon Ramsay
+          </Button>
+        </ButtonGroup>
       </Container>
       <br></br>
       <div>
