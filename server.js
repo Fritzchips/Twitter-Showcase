@@ -94,72 +94,68 @@ app.get("/content/search/:name", async (req, res) => {
   res.send(listOfContent);
 });
 
-async function sortUserTimeline(response, userInfo) {
+function sortUserTimeline(response, userInfo) {
   const twitterDataList = response.data.data;
   const twitterMediaList = response.data.includes.media;
 
-  const userCardList = Promise.all(
-    twitterDataList.map(async (item) => {
-      const timeCreated = new Date(item.created_at);
-      const convertedDate = timeCreated.toDateString();
-      let imageList = [];
+  let userCardList = twitterDataList.map((item) => {
+    const timeCreated = new Date(item.created_at);
+    const convertedDate = timeCreated.toDateString();
+    let imageList = [];
 
-      if (item.attachments) {
-        const mediaKeyList = item.attachments.media_keys;
-        imageList = await findMediaUrl(twitterMediaList, mediaKeyList);
-      }
+    if (item.attachments) {
+      const mediaKeyList = item.attachments.media_keys;
+      imageList = findMediaUrl(twitterMediaList, mediaKeyList);
+    }
 
-      const postInfo = {
-        postId: item.id,
-        userName: userInfo.username,
-        screenName: userInfo.name,
-        text: item.text,
-        time: convertedDate,
-        retweet: item.public_metrics.retweet_count,
-        like: item.public_metrics.like_count,
-        profileImage: userInfo.profile_image_url,
-        images: imageList,
-      };
-      return postInfo;
-    })
-  );
+    const postInfo = {
+      postId: item.id,
+      userName: userInfo.username,
+      screenName: userInfo.name,
+      text: item.text,
+      time: convertedDate,
+      retweet: item.public_metrics.retweet_count,
+      like: item.public_metrics.like_count,
+      profileImage: userInfo.profile_image_url,
+      images: imageList,
+    };
+    return postInfo;
+  });
   return userCardList;
 }
 
-async function sortMultipleUsersInfo(response) {
+function sortMultipleUsersInfo(response) {
   const twitterDataList = response.data.data;
   const twitterMediaList = response.data.includes.media;
   const twitterUserList = response.data.includes.users;
 
-  const usersCardList = Promise.all(
-    twitterDataList.map(async (item) => {
-      const timeCreated = new Date(item.created_at);
-      const convertedDate = timeCreated.toDateString();
-      const userInfo = twitterUserList.filter(
-        (user) => user.id === item.author_id
-      );
-      let imageList = [];
+  let usersCardList = twitterDataList.map((item) => {
+    const timeCreated = new Date(item.created_at);
+    const convertedDate = timeCreated.toDateString();
+    const userInfo = twitterUserList.filter(
+      (user) => user.id === item.author_id
+    );
+    let imageList = [];
 
-      if (item.attachments) {
-        const numberOfKeys = item.attachments.media_keys;
-        imageList = await findMediaUrl(twitterMediaList, numberOfKeys);
-      }
+    if (item.attachments) {
+      const numberOfKeys = item.attachments.media_keys;
+      imageList = findMediaUrl(twitterMediaList, numberOfKeys);
+    }
 
-      const postInfo = {
-        postId: item.id,
-        userId: item.author_id,
-        userName: userInfo[0].username,
-        screenName: userInfo[0].name,
-        text: item.text,
-        time: convertedDate,
-        retweet: item.public_metrics.retweet_count,
-        like: item.public_metrics.like_count,
-        profileImage: userInfo[0].profile_image_url,
-        images: imageList,
-      };
-      return postInfo;
-    })
-  );
+    const postInfo = {
+      postId: item.id,
+      userId: item.author_id,
+      userName: userInfo[0].username,
+      screenName: userInfo[0].name,
+      text: item.text,
+      time: convertedDate,
+      retweet: item.public_metrics.retweet_count,
+      like: item.public_metrics.like_count,
+      profileImage: userInfo[0].profile_image_url,
+      images: imageList,
+    };
+    return postInfo;
+  });
   return usersCardList;
 }
 
