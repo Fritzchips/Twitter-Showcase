@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-function TopPicksPage() {
+function FavoritesPage() {
   const [listOfTweets, setListOfTweets] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +29,7 @@ function TopPicksPage() {
     <div>
       <header>
         <br></br>
-        <h1 style={{ fontFamily: "cursive" }}>Top Picks</h1>
+        <h1 style={{ fontFamily: "cursive" }}>Favorite Picks</h1>
       </header>
       <br></br>
       <Container>
@@ -76,4 +76,4 @@ function TopPicksPage() {
   );
 }
 
-export default TopPicksPage;
+export default FavoritesPage;

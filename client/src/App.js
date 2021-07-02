@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import HomePage from "./components/HomePage";
-import TopPicksPage from "./components/TopPicksPage";
+import FavoritesPage from "./components/FavoritesPage";
 import SearchPage from "./components/SearchPage";
 import { Switch, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route exact path={"/"} component={HomePage} />
           <Route exact path={"/search"} component={SearchPage} />
-          <Route exact path={"/top-picks"} component={TopPicksPage} />
+          <Route exact path={"/favorites"} component={FavoritesPage} />
         </Switch>
       </Container>
     </div>

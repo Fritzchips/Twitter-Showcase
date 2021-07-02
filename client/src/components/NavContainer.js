@@ -15,7 +15,7 @@ function NavContainer() {
       >
         <img src="/images/box-twitter.png" className="nav-logo" />
         <div className="nav-title">
-          <strong>TRAVEL TWEETS</strong>
+          <strong>SWEET TWEET</strong>
         </div>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
@@ -27,10 +27,10 @@ function NavContainer() {
               Home
             </Link>
             <Link className="nav-link" to={"/search"}>
-              Tweets Search
+              Search
             </Link>
-            <Link className="nav-link" to={"/top-picks"}>
-              Top Picks
+            <Link className="nav-link" to={"/favorites"}>
+              Favorites
             </Link>
           </Nav>
         </Navbar.Collapse>

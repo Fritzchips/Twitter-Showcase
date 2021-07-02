@@ -12,16 +12,16 @@ function HomePage() {
           <Jumbotron fluid>
             <Container>
               <div className="home-jumbotext">
-                <h1>Welcome to Travel Tweets!</h1>
+                <h1>Welcome to Sweet Tweet!</h1>
                 <p>
-                  A full-stack Tweet generator deployed to Heroku using
+                  A full-stack tweet generator deployed to Heroku using
                   NodeJS/Express, Axios, React and Bootstraps.
                 </p>
                 <p>
-                  Explore Tweets Search to discover hidden gems with related
-                  content or stay up to date with your favourite artists. Dive
-                  into my Top Picks for random tweets from a few of my
-                  favourites!
+                  Staying in touch made easy, search by username or content name
+                  and the most recent tweets will be displayed. Dive into random
+                  single tweets with favorites, where you will discover users
+                  that inspire me.
                 </p>
               </div>
             </Container>

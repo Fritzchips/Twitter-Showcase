@@ -20,7 +20,7 @@ app.get("/search", (req, res) =>
   res.sendFile(path.join(__dirname, "client/build/index.html"))
 );
 
-app.get("/top-picks", (req, res) =>
+app.get("/favorites", (req, res) =>
   res.sendFile(path.join(__dirname, "client/build/index.html"))
 );
 
