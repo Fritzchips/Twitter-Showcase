@@ -72,7 +72,7 @@ async function getMentions(userInfo) {
     const response = await authAxios.get(
       `/users/${userInfo.id}/mentions?expansions=author_id,attachments.media_keys&media.fields=url,preview_image_url&tweet.fields=conversation_id,created_at,public_metrics&user.fields=created_at,profile_image_url&max_results=10`
     );
-    listOfMentions = sortOtherUserInfo(response);
+    listOfMentions = sortMultipleUsersInfo(response);
   } catch (error) {
     console.error(error);
   }
@@ -85,7 +85,7 @@ app.get("/content/search/:name", async (req, res) => {
     const response = await authAxios.get(
       `/tweets/search/recent?query=${req.params.name}&max_results=10&expansions=author_id,attachments.media_keys&tweet.fields=public_metrics,created_at,lang,conversation_id&user.fields=created_at,entities,profile_image_url&media.fields=media_key,preview_image_url,url`
     );
-    listOfContent = sortOtherUserInfo(response);
+    listOfContent = sortMultipleUsersInfo(response);
   } catch (error) {
     console.error(error);
   }
@@ -123,7 +123,7 @@ function sortUserTimeline(response, userInfo) {
   return userCardList;
 }
 
-function sortOtherUserInfo(response) {
+function sortMultipleUsersInfo(response) {
   const twitterDataList = response.data.data;
   const twitterMediaList = response.data.includes.media;
   const twitterUserList = response.data.includes.users;
