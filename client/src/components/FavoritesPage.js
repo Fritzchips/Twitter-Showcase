@@ -19,8 +19,7 @@ function FavoritesPage() {
     try {
       const person = await axios.get(`/user/search/tweets/${name}`);
       let number = Math.floor(Math.random() * person.data.length);
-      const randomCard = await person.data[number];
-      setListOfTweets([randomCard]);
+      setListOfTweets([person.data[number]]);
     } catch (error) {
       console.error(error);
     }
