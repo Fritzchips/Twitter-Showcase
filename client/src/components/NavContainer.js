@@ -23,13 +23,13 @@ function NavContainer() {
         />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto d-flex flex-row justify-content-around nav-links">
-            <Link className="nav-link" to={"/"}>
+            <Link className="nav-link" to="/">
               Home
             </Link>
-            <Link className="nav-link" to={"/search"}>
+            <Link className="nav-link" to="/search">
               Search
             </Link>
-            <Link className="nav-link" to={"/favorites"}>
+            <Link className="nav-link" to="/favorites">
               Favorites
             </Link>
           </Nav>

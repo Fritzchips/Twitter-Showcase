@@ -37,6 +37,8 @@ This full-stack application was a step away from my comfort zone. Every project 
 
 Perseverance and guidance from the Software Development Mastermind Group helped me overcome some of my most difficult obstacles. I feel a lot more confident with this introduction to the backend. This is a project that I'm proud of making.
 
+## Instructions
+
 ## Author
 
 ---

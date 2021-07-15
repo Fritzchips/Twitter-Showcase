@@ -13,9 +13,9 @@ function App() {
       <NavContainer />
       <Container>
         <Switch>
-          <Route exact path={"/"} component={HomePage} />
-          <Route exact path={"/search"} component={SearchPage} />
-          <Route exact path={"/favorites"} component={FavoritesPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/favorites" component={FavoritesPage} />
         </Switch>
       </Container>
     </div>

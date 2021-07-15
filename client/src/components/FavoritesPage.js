@@ -29,7 +29,7 @@ function FavoritesPage() {
     <div>
       <header>
         <br></br>
-        <h1 style={{ fontFamily: "cursive" }}>Favorite Picks</h1>
+        <h1 style={{ fontFamily: "monospace" }}>Favorite Picks</h1>
       </header>
       <br></br>
       <Container>
