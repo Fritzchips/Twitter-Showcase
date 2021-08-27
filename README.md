@@ -1,6 +1,6 @@
 ## Welcome to Sweet Tweet!
 
-A full-stack Tweet Generator that takes data straight from the Twitter API using Axios. This was created using NodeJs/Express, React and Bootstraps.
+A full-stack Tweet Generator that takes data straight from the Twitter API using Axios created using NodeJs/Express, React and Bootstraps.
 
 Try it out [here](https://fritz-sweet-tweet.herokuapp.com/)
 

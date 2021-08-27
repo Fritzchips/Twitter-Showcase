@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
+import "../styles/SearchPage.css";
 
 function SearchPage() {
   const [searchName, setSearchName] = useState("");
@@ -42,30 +43,31 @@ function SearchPage() {
 
   return (
     <div>
-      <Container>
-        <br></br>
+      <Container style={{ marginTop: "10px" }}>
         <Form
           onSubmit={submitHandler}
-          className="d-flex flex-column align-items-center "
+          className="d-flex flex-column align-items-center"
         >
           <Row>
-            <Form.Group as={Col} xs="auto" controlId="inputField">
-              <Form.Label>Searching for?</Form.Label>
+            <Form.Group as={Col} xs="auto">
+              <Form.Label id="search-label-one">Searching for?</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="elonmusk"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
-                style={{ borderRadius: "30px", width: "180px" }}
+                id="search-name"
               />
             </Form.Group>
 
-            <Form.Group as={Col} xs="auto" controlId="searchField">
-              <Form.Label>What kind of Tweets do you want?</Form.Label>
+            <Form.Group as={Col} xs="auto">
+              <Form.Label id="search-label-two">
+                What kind of Tweets do you want?
+              </Form.Label>
               <Form.Control
                 as="select"
                 onChange={(e) => setSearchType(e.target.value)}
-                style={{ borderRadius: "30px", width: "180px" }}
+                id="search-select"
               >
                 <option value="tweets">@user Timeline</option>
                 <option value="mentions">@user Mentions</option>
@@ -74,11 +76,7 @@ function SearchPage() {
             </Form.Group>
 
             <Form.Group as={Col} xs="auto">
-              <Button
-                variant="primary"
-                type="submit"
-                style={{ marginTop: "30px", borderRadius: "30px" }}
-              >
+              <Button variant="primary" type="submit" id="search-btn">
                 Find Tweets
               </Button>
             </Form.Group>

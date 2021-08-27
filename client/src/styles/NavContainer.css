@@ -16,3 +16,31 @@
 .nav-links {
   font-size: 20px;
 }
+
+@media screen and (max-height: 650px) {
+  .nav-logo {
+    height: 35px;
+  }
+
+  .nav-title {
+    font-size: 25px;
+  }
+
+  .nav-links {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav-logo {
+    height: 35px;
+  }
+
+  .nav-title {
+    font-size: 25px;
+  }
+
+  .nav-links {
+    font-size: 15px;
+  }
+}

@@ -2,7 +2,7 @@
   background-image: url("../images/beach.png");
   border-radius: 20px;
   margin: auto;
-  padding: 10px 30px 100px 30px;
+  padding: 10px;
   max-width: 800px;
   background-size: cover;
 }
@@ -24,4 +24,24 @@
   margin: 9% auto;
   padding: 20px;
   max-width: 80%;
+}
+
+@media screen and (max-width: 480px) {
+  p {
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 15px;
+  }
+
+  .home-jumbotext {
+    padding: 10px;
+    width: 80vw;
+    max-width: 100%;
+  }
+
+  .home-background {
+    padding: 10px;
+  }
 }

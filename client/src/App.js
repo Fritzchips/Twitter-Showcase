@@ -10,14 +10,16 @@ import NavContainer from "./components/NavContainer";
 function App() {
   return (
     <div className="App">
-      <NavContainer />
-      <Container>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/search" component={SearchPage} />
-          <Route exact path="/favorites" component={FavoritesPage} />
-        </Switch>
-      </Container>
+      <div style={{ width: "100vw", height: "100vh" }}>
+        <NavContainer />
+        <Container>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/search" component={SearchPage} />
+            <Route exact path="/favorites" component={FavoritesPage} />
+          </Switch>
+        </Container>
+      </div>
     </div>
   );
 }

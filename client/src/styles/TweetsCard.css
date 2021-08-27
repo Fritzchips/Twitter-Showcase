@@ -1,5 +1,5 @@
 .card-container-size {
-  width: 100%;
+  width: 100vw;
   margin: 10px;
   max-width: 600px;
 }
@@ -29,6 +29,7 @@
 
 .card-time {
   color: #657786;
+  margin-top: 10px;
 }
 
 .card-retweet {
@@ -46,4 +47,53 @@
   width: 100%;
   height: 280px;
   object-fit: cover;
+}
+
+@media screen and (max-width: 480px) {
+  .card-container-size {
+    width: 100vw;
+    margin: 10px;
+    max-width: 400px;
+  }
+
+  .card-profile-image {
+    height: 35px;
+  }
+
+  .card-username {
+    font-size: 10px;
+  }
+
+  .card-bird-img {
+    height: 15px;
+  }
+
+  .card-text-size {
+    font-size: 10px;
+  }
+
+  .card-strong-words {
+    font-size: 12px;
+  }
+
+  .card-time {
+    font-size: 10px;
+  }
+
+  .card-retweet {
+    height: 20px;
+    width: 15px;
+    margin-right: 10px;
+  }
+
+  .card-like {
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .card-image-content {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
 }

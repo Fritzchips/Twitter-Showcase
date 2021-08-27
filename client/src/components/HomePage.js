@@ -6,7 +6,6 @@ import "../styles/HomePage.css";
 function HomePage() {
   return (
     <Container fluid>
-      <br></br>
       <div className="home-background">
         <div className="home-modal">
           <Jumbotron fluid>

@@ -20,7 +20,9 @@ function TweetsCard({ listOfTweets }) {
                   </div>
                   <div className="d-flex align-items-start flex-column">
                     <div>
-                      <strong>{item.screenName}</strong>
+                      <strong className="card-strong-words">
+                        {item.screenName}
+                      </strong>
                     </div>
                     <div className="card-username">@{item.userName}</div>
                   </div>
@@ -36,7 +38,6 @@ function TweetsCard({ listOfTweets }) {
                 <div className="d-flex align-items-start ">
                   <div className="card-text-size">{item.text}</div>
                 </div>
-                <br></br>
                 <div className="card-img-box">
                   {item.images.length > 0 ? (
                     <TweetImageBox images={item.images} />
@@ -44,24 +45,22 @@ function TweetsCard({ listOfTweets }) {
                     <></>
                   )}
                 </div>
-                {item.images.length > 0 ? <br></br> : <></>}
               </div>
               <div className="text-start card-time">{item.time}</div>
               <hr></hr>
               <div className="d-flex justify-content-around">
                 <span>
                   <img src="/images/retweet.png" className="card-retweet" />
-                  <strong>{item.retweet}</strong>
+                  <strong className="card-strong-words">{item.retweet}</strong>
                 </span>
                 <span>
                   <img src="/images/like.png" className="card-like" />
-                  <strong>{item.like}</strong>
+                  <strong className="card-strong-words">{item.like}</strong>
                 </span>
               </div>
             </div>
           </div>
         ))}
-        <br></br>
       </div>
     </Container>
   );
