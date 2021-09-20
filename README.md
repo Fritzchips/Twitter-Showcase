@@ -85,4 +85,4 @@ If you require a bearer token from Twitter, sign up and get it in https://develo
 
 ---
 
-- **Fritz Solibio** - _Software Development Mastermind Student_
+- **Fritz Solibio** - _Software Developer_ [LinkedIn](https://www.linkedin.com/in/fritz-solibio-4aa9b321b/) | [Website](https://www.fritzsolibio.ca/)
